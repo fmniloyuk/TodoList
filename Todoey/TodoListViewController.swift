@@ -12,6 +12,9 @@ class TodoListViewController: UITableViewController {
     
     var itemArray = ["Apple", "Orange juice", "Milk"]
     
+    //An interface to the user’s defaults database, where you store key-value pairs persistently.
+    let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //Setting the title of tableViewController
@@ -58,6 +61,9 @@ class TodoListViewController: UITableViewController {
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen once the user click the Add Item button on our UIAlert
                 self.itemArray.append(textField.text!)
+            
+                self.defaults.set(self.itemArray, forKey: "TodoListArray")
+            
                 self.tableView.reloadData()
         }
         alert.addTextField { (alertTextField) in
