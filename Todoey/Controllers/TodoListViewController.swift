@@ -30,6 +30,7 @@ class TodoListViewController: UITableViewController {
         newItem3.tittle = "Chocolate"
         itemArray.append(newItem3)
         
+
         //        if let items = defaults.array(forKey: "TodoListArray") as? [String]{
         //            itemArray = items
         //        }
@@ -46,8 +47,17 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //Create a reference of the prototype cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
+        
         //Insert data to the cell
         cell.textLabel?.text = itemArray[indexPath.row].tittle
+        
+        if itemArray[indexPath.row].done == true{
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
+        
+        
         
         return cell
     }
