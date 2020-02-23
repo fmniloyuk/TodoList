@@ -53,13 +53,15 @@ class TodoListViewController: UITableViewController {
         //Insert data to the cell
         cell.textLabel?.text = item.tittle
         
-        if itemArray[indexPath.row].done == true{
-            cell.accessoryType = .checkmark
-        } else {
-            cell.accessoryType = .none
-        }
+//        if itemArray[indexPath.row].done == true{
+//            cell.accessoryType = .checkmark
+//        } else {
+//            cell.accessoryType = .none
+//        }
         
-        
+        //Ternary operator ==>
+        // value = condition ? valueIfTrue : valueIfFalse
+        cell.accessoryType = item.done ? .checkmark : .none
         
         return cell
     }
