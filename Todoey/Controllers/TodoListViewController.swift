@@ -30,6 +30,10 @@ class TodoListViewController: UITableViewController {
         newItem3.tittle = "Chocolate"
         itemArray.append(newItem3)
         
+        if let items = defaults.array(forKey: "ToDolistArry") as? [Item]{
+            itemArray = items
+        }
+        
 
         //        if let items = defaults.array(forKey: "TodoListArray") as? [String]{
         //            itemArray = items
@@ -58,6 +62,8 @@ class TodoListViewController: UITableViewController {
 //        } else {
 //            cell.accessoryType = .none
 //        }
+        
+        cell.accessoryType = item.done ? .checkmark : .none
         
         //Ternary operator ==>
         // value = condition ? valueIfTrue : valueIfFalse
