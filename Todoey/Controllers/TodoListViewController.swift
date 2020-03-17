@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  TodoListViewController.swift
 //  Todoey
 //
 //  Created by Faisal Mahmud on 14/02/2020.
@@ -17,6 +17,10 @@ class TodoListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+        
+        print(dataFilePath)
         
         let newItem = Item()
         newItem.tittle = "Apple"
@@ -104,6 +108,11 @@ class TodoListViewController: UITableViewController {
             newItem.tittle = textField.text!
             
             self.itemArray.append(newItem)
+            
+
+            
+            
+            
             
             self.defaults.set(self.itemArray, forKey: "TodoListArray")
             
