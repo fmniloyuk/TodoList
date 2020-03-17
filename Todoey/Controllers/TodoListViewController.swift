@@ -15,10 +15,10 @@ class TodoListViewController: UITableViewController {
     //An interface to the user’s defaults database, where you store key-value pairs persistently.
     let defaults = UserDefaults.standard
     
+          let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
         
         print(dataFilePath)
         
@@ -34,9 +34,9 @@ class TodoListViewController: UITableViewController {
         newItem3.tittle = "Chocolate"
         itemArray.append(newItem3)
         
-        if let items = defaults.array(forKey: "ToDolistArry") as? [Item]{
-            itemArray = items
-        }
+//        if let items = defaults.array(forKey: "ToDolistArry") as? [Item]{
+//            itemArray = items
+//        }
         
 
         //        if let items = defaults.array(forKey: "TodoListArray") as? [String]{
@@ -127,6 +127,20 @@ class TodoListViewController: UITableViewController {
         alert.addAction(action)
         
         present(alert, animated: true, completion: nil)
+    }
+    
+    //MARK:- Model Manupulation Methods
+    
+    func saveItems() {
+        let encoder = PropertyListEncoder()
+        
+        do{
+            let data = try encoder.encode(self.itemArray)
+            try data.write(to: dataFilePath!)
+        } catch {
+            print("Error encoding item array, \(error)")
+        }
+        self.tableView.reloadData()
     }
 }
 
