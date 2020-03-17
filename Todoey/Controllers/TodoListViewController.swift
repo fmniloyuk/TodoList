@@ -34,7 +34,7 @@ class TodoListViewController: UITableViewController {
         newItem3.tittle = "Chocolate"
         itemArray.append(newItem3)
         
-        //loadItems()
+        loadItems()
         
 //        if let items = defaults.array(forKey: "ToDolistArry") as? [Item]{
 //            itemArray = items
