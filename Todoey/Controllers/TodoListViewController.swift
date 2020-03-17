@@ -109,12 +109,14 @@ class TodoListViewController: UITableViewController {
             
             self.itemArray.append(newItem)
             
-
+            let encoder = PropertyListEncoder()
             
-            
-            
-            
-            self.defaults.set(self.itemArray, forKey: "TodoListArray")
+            do{
+                let data = try encoder.encode(self.itemArray)
+                try data.write(to: self.dataFilePath!)
+            } catch {
+                print("Error encoding item array, \(error)")
+            }
             
             self.tableView.reloadData()
         }
