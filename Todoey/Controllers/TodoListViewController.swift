@@ -34,6 +34,8 @@ class TodoListViewController: UITableViewController {
         newItem3.tittle = "Chocolate"
         itemArray.append(newItem3)
         
+        //loadItems()
+        
 //        if let items = defaults.array(forKey: "ToDolistArry") as? [Item]{
 //            itemArray = items
 //        }
@@ -141,6 +143,17 @@ class TodoListViewController: UITableViewController {
             print("Error encoding item array, \(error)")
         }
         self.tableView.reloadData()
+    }
+    
+    func loadItems() {
+        if let data = try? Data(contentsOf: dataFilePath!){
+            let decoder = PropertyListDecoder()
+            do {
+                itemArray = try decoder.decode([Item].self, from: data)
+            } catch {
+                 print("Error decoding item array, \(error)")
+            }
+        }
     }
 }
 
