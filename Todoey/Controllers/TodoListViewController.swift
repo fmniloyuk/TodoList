@@ -111,17 +111,10 @@ class TodoListViewController: UITableViewController {
             
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
-            
+            newItem.done = false
             self.itemArray.append(newItem)
             
-            let encoder = PropertyListEncoder()
-//
-//            do{
-//                let data = try encoder.encode(self.itemArray)
-//                try data.write(to: self.dataFilePath!)
-//            } catch {
-//                print("Error encoding item array, \(error)")
-//            }
+            self.saveItems()
             
             self.tableView.reloadData()
         }
