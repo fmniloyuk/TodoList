@@ -13,28 +13,12 @@ class TodoListViewController: UITableViewController {
     
     var itemArray = [Item]()
     
-    //An interface to the user’s defaults database, where you store key-value pairs persistently.
-    let defaults = UserDefaults.standard
-    
-          let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("Items.plist")
        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(dataFilePath)
-        
-        let newItem = Item()
-        newItem.title = "Apple"
-        itemArray.append(newItem)
-        
-        let newItem2 = Item()
-        newItem2.title = "Mango"
-        itemArray.append(newItem2)
-        
-        let newItem3 = Item()
-        newItem3.title = "Chocolate"
-        itemArray.append(newItem3)
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         //loadItems()
         
