@@ -23,15 +23,15 @@ class TodoListViewController: UITableViewController {
         print(dataFilePath)
         
         let newItem = Item()
-        newItem.tittle = "Apple"
+        newItem.title = "Apple"
         itemArray.append(newItem)
         
         let newItem2 = Item()
-        newItem2.tittle = "Mango"
+        newItem2.title = "Mango"
         itemArray.append(newItem2)
         
         let newItem3 = Item()
-        newItem3.tittle = "Chocolate"
+        newItem3.title = "Chocolate"
         itemArray.append(newItem3)
         
         loadItems()
@@ -61,7 +61,7 @@ class TodoListViewController: UITableViewController {
         let item = itemArray[indexPath.row]
         
         //Insert data to the cell
-        cell.textLabel?.text = item.tittle
+        cell.textLabel?.text = item.title
         
 //        if itemArray[indexPath.row].done == true{
 //            cell.accessoryType = .checkmark
@@ -106,19 +106,22 @@ class TodoListViewController: UITableViewController {
         
         let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
             //what will happen once the user click the Add Item button on our UIAlert
-            let newItem = Item()
-            newItem.tittle = textField.text!
+            
+       let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            
+            let newItem = Item(context: context)
+            newItem.title = textField.text!
             
             self.itemArray.append(newItem)
             
             let encoder = PropertyListEncoder()
-            
-            do{
-                let data = try encoder.encode(self.itemArray)
-                try data.write(to: self.dataFilePath!)
-            } catch {
-                print("Error encoding item array, \(error)")
-            }
+//
+//            do{
+//                let data = try encoder.encode(self.itemArray)
+//                try data.write(to: self.dataFilePath!)
+//            } catch {
+//                print("Error encoding item array, \(error)")
+//            }
             
             self.tableView.reloadData()
         }
@@ -134,26 +137,26 @@ class TodoListViewController: UITableViewController {
     //MARK:- Model Manupulation Methods
     
     func saveItems() {
-        let encoder = PropertyListEncoder()
-        
-        do{
-            let data = try encoder.encode(self.itemArray)
-            try data.write(to: dataFilePath!)
-        } catch {
-            print("Error encoding item array, \(error)")
-        }
-        self.tableView.reloadData()
+//        let encoder = PropertyListEncoder()
+//
+//        do{
+//            let data = try encoder.encode(self.itemArray)
+//            try data.write(to: dataFilePath!)
+//        } catch {
+//            print("Error encoding item array, \(error)")
+//        }
+//        self.tableView.reloadData()
     }
     
     func loadItems() {
-        if let data = try? Data(contentsOf: dataFilePath!){
-            let decoder = PropertyListDecoder()
-            do {
-                itemArray = try decoder.decode([Item].self, from: data)
-            } catch {
-                 print("Error decoding item array, \(error)")
-            }
-        }
+//        if let data = try? Data(contentsOf: dataFilePath!){
+//            let decoder = PropertyListDecoder()
+//            do {
+//                itemArray = try decoder.decode([Item].self, from: data)
+//            } catch {
+//                 print("Error decoding item array, \(error)")
+//            }
+//        }
     }
 }
 
