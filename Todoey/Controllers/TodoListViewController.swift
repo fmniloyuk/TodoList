@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoListViewController: UITableViewController {
     
@@ -35,7 +36,7 @@ class TodoListViewController: UITableViewController {
         newItem3.title = "Chocolate"
         itemArray.append(newItem3)
         
-        loadItems()
+        //loadItems()
         
 //        if let items = defaults.array(forKey: "ToDolistArry") as? [Item]{
 //            itemArray = items
@@ -144,14 +145,7 @@ class TodoListViewController: UITableViewController {
     }
     
     func loadItems() {
-//        if let data = try? Data(contentsOf: dataFilePath!){
-//            let decoder = PropertyListDecoder()
-//            do {
-//                itemArray = try decoder.decode([Item].self, from: data)
-//            } catch {
-//                 print("Error decoding item array, \(error)")
-//            }
-//        }
+    
     }
 }
 
